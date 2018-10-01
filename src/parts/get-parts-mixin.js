@@ -1,17 +1,19 @@
+import { mapState, mapActions } from 'vuex';
+
 export default {
   created() {
-    this.$store.dispatch('robots/getParts');
+    this.getParts();
   },
-  computed: {
-    parts() {
-      return (
-        this.$store.state.robots.parts || {
-          heads: [],
-          arms: [],
-          torsos: [],
-          bases: [],
-        }
-      );
-    },
+  computed: mapState({
+    parts: ({ robots }) =>
+      robots.parts || {
+        heads: [],
+        arms: [],
+        torsos: [],
+        bases: [],
+      },
+  }),
+  methods: {
+    ...mapActions('robots', ['getParts']),
   },
 };

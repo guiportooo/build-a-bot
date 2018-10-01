@@ -51,15 +51,13 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex';
+
 export default {
   name: 'Cart',
   computed: {
-    cart() {
-      return this.$store.state.robots.cart;
-    },
-    cartSaleItems() {
-      return this.$store.getters['robots/cartSaleItems'];
-    },
+    ...mapState('robots', ['cart']),
+    ...mapGetters('robots', ['cartSaleItems']),
   },
 };
 </script>
